@@ -1,146 +1,32 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Caleb Lowe • Class Portal</title>
-
-  <!-- Social / preview (optional) -->
-  <meta name="description" content="Caleb Lowe's class portal: about me and links to coding assignments." />
-  <meta property="og:title" content="Caleb Lowe • Class Portal" />
-  <meta property="og:description" content="About me and links to coding assignments." />
-
-  <style>
-    :root{
-      --bg: #0f172a;        /* slate-900 */
-      --card: #111827;      /* gray-900 */
-      --text: #e5e7eb;      /* gray-200 */
-      --muted:#cbd5e1;      /* slate-300 */
-      --accent:#22c55e;     /* green-500 */
-      --accent-2:#38bdf8;   /* sky-400 */
-      --focus:#fbbf24;      /* amber-400 */
-      --maxw: 72rem;
-    }
-
-    /* Reset-ish */
-    *,*::before,*::after{ box-sizing: border-box; }
-    html:focus-within{ scroll-behavior:smooth; }
-    body{
-      margin:0; font:16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
-      color:var(--text); background: radial-gradient(1200px 600px at 10% -10%, #1f2937, transparent) var(--bg);
-    }
-
-    a{ color:var(--accent-2); text-decoration-thickness: .1em; text-underline-offset: .2em; }
-    a:hover{ text-decoration: underline; }
-    a:focus-visible, button:focus-visible, [tabindex]:focus-visible{
-      outline: 3px solid var(--focus); outline-offset: 3px;
-    }
-
-    .wrap{ max-width:var(--maxw); margin-inline:auto; padding: clamp(16px, 3vw, 32px); }
-    header{ padding-block: 1rem 0.5rem; }
-    header h1{ margin:0; font-size: clamp(1.8rem, 3.5vw, 2.6rem); letter-spacing:.5px; }
-    header p{ margin:.25rem 0 0; color:var(--muted) }
-
-    /* Skip link */
-    .skip-link{
-      position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden;
-    }
-    .skip-link:focus{
-      left:1rem; top:1rem; width:auto; height:auto; padding:.5rem .75rem; background:#111; border-radius:.5rem;
-    }
-
-    nav{
-      margin-block: 1rem 2rem; background: color-mix(in oklab, var(--card) 85%, transparent);
-      border:1px solid #1f2937; border-radius: .75rem;
-    }
-    nav ul{ list-style:none; margin:0; padding:.5rem; display:flex; flex-wrap:wrap; gap:.5rem; }
-    nav a{
-      display:inline-block; padding:.6rem .9rem; border-radius:.6rem; background:#0b1222; border:1px solid #1f2937;
-      text-decoration:none;
-    }
-    nav a[aria-current="page"]{
-      background: #0b1d12; border-color:#134e4a; color: var(--accent);
-      font-weight:600;
-    }
-
-    main{
-      display:grid; gap:1.25rem; grid-template-columns: 1fr; 
-    }
-
-    .card{
-      background: color-mix(in oklab, var(--card) 90%, transparent);
-      border:1px solid #1f2937; border-radius:1rem; padding: clamp(16px, 3vw, 28px);
-      box-shadow: 0 10px 25px rgba(0,0,0,.25);
-    }
-    .card h2{ margin-top:0; font-size: clamp(1.25rem, 2.4vw, 1.6rem); }
-
-    .list{
-      display:grid; gap:.5rem; padding-left:1rem;
-    }
-
-    footer{ margin-top:2rem; color:var(--muted); font-size:.95rem; }
-    footer a{ color:var(--accent); }
-
-    /* Motion-reduction respect */
-    @media (prefers-reduced-motion: reduce){
-      html:focus-within{ scroll-behavior: auto; }
-    }
-
-    /* Wide layout */
-    @media (min-width: 820px){
-      main{ grid-template-columns: 1.1fr .9fr; align-items:start; }
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Class Portal</title>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to main content</a>
+  <h1>Class Portal</h1>
+  <h2>Caleb Lowe</h2>
+  <hr>
 
-  <div class="wrap">
-    <header role="banner">
-      <h1>Caleb Lowe — Class Portal</h1>
-      <p>Landing page for course projects and assignments.</p>
-    </header>
+  <h3>About Me</h3>
+  <p>
+    Hello! My name is Caleb. I am currently enrolled in Universal Design. 
+    I enjoy learning about web development and coding because it allows me 
+    to build creative and useful projects. Outside of coding, I make music 
+    and like solving tech problems.
+  </p>
+  <hr>
 
-    <nav aria-label="Primary">
-      <ul>
-        <li><a href="index.html" aria-current="page">Home</a></li>
-        <!-- Update these when you publish assignments -->
-        <li><a href="#" aria-disabled="true">Assignment 1 (coming soon)</a></li>
-        <li><a href="#" aria-disabled="true">Assignment 2 (coming soon)</a></li>
-        <li><a href="#" aria-disabled="true">Assignment 3 (coming soon)</a></li>
-      </ul>
-    </nav>
+  <h3>Assignments</h3>
+  <ul>
+    <li><a href="#">Assignment 1</a></li>
+    <li><a href="#">Assignment 2</a></li>
+    <li><a href="#">Assignment 3</a></li>
+  </ul>
+  <hr>
 
-    <main id="main" role="main">
-      <section class="card" aria-labelledby="about-heading">
-        <h2 id="about-heading">About Me</h2>
-        <p>Hey! I’m <strong>Caleb Lowe</strong>. I’m a student interested in operating systems, numerical methods, and building clean, practical software. Outside of class I write and produce music, and I’m always up for projects that mix creativity with code.</p>
-        <ul class="list">
-          <li><strong>Focus areas:</strong> C/Linux, Python, web basics</li>
-          <li><strong>Goals this semester:</strong> ship accessible, well-documented projects and improve my testing discipline</li>
-          <li><strong>Contact:</strong> <a href="mailto:you@example.com">you@example.com</a></li>
-        </ul>
-      </section>
-
-      <section class="card" aria-labelledby="assignments-heading">
-        <h2 id="assignments-heading">Coding Assignments</h2>
-        <ol class="list">
-          <li><a href="#" aria-disabled="true">Assignment 1 — Title TBD</a></li>
-          <li><a href="#" aria-disabled="true">Assignment 2 — Title TBD</a></li>
-          <li><a href="#" aria-disabled="true">Assignment 3 — Title TBD</a></li>
-        </ol>
-        <p style="color:var(--muted); margin-top:.5rem;">These links are placeholders and will point to project pages or repos as they’re published.</p>
-      </section>
-    </main>
-
-    <footer role="contentinfo">
-      <p>© <span id="year"></span> Caleb Lowe • Built for class • <a href="https://github.com/">GitHub</a></p>
-    </footer>
-  </div>
-
-  <script>
-    // tiny enhancement: current year in footer
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+  <p>© 2025 Caleb Lowe | Class Portal</p>
 </body>
 </html>
