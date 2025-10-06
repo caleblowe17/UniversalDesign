@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Assignment 1 — Person (HTML5 Semantics)</title>
+
+  <!-- Google Fonts: serif for headings, sans-serif for body -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* Color-blind-safe, high-contrast palette */
+    :root{
+      --bg:#ffffff;              /* white background */
+      --fg:#0b1220;              /* near-black text */
+      --muted:#475569;           /* slate */
+      --link:#0b5fff;            /* accessible blue */
+      --visited:#5a36d6;         /* indigo */
+      --border:#e5e7eb;          /* light gray */
+      --accent:#0f766e;          /* teal */
+      --wrap:100ch;              /* ~100 characters per line */
+    }
+
+    html{scroll-behavior:smooth;}
+    body{
+      margin:0; color:var(--fg); background:var(--bg);
+      font:16px/1.75 Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+    a{color:var(--link)}
+    a:visited{color:var(--visited)}
+    a:focus-visible{outline:3px solid var(--accent); outline-offset:2px; border-radius:4px}
+
+    /* Auto-centering wrapper at ~100ch */
+    .wrap{max-width:var(--wrap); margin-inline:auto; padding:1rem;}
+
+    header.site{
+      position:sticky; top:0; z-index:10;
+      background:color-mix(in oklab, var(--bg) 92%, transparent);
+      backdrop-filter:blur(6px);
+      border-bottom:1px solid var(--border);
+    }
+    header.site h1{
+      font-family:Merriweather, Georgia, serif; margin:.25rem 0;
+      font-size:clamp(1.25rem,1rem + 1.5vw,2rem);
+    }
+
+    nav ul{margin:.25rem 0 .75rem; padding-left:1.2rem}
+    nav li{margin:.2rem 0}
+
+    main{padding-block:.5rem 2rem}
+    article h2, article h3{font-family:Merriweather, Georgia, serif}
+    article h2{margin-top:1.5rem; border-bottom:1px solid var(--border); padding-bottom:.25rem}
+    article p{margin:.75rem 0}
+    .lede{color:var(--muted)}
+
+    figure{margin:1rem 0; text-align:center}
+    figure img{max-width:100%; height:auto; display:block; margin-inline:auto}
+    figcaption{font-size:.9rem; color:var(--muted)}
+
+    footer.site{border-top:1px solid var(--border); font-size:.95rem}
+
+    /* Hide visually, keep for screen readers (required) */
+    .sr-only{
+      border:0; clip:rect(0,0,0,0); height:1px; margin:-1px;
+      overflow:hidden; padding:0; position:absolute; white-space:nowrap; width:1px;
+    }
+  </style>
+</head>
+<body>
+  <a class="sr-only" href="#content">Skip to main content</a>
+
+  <!-- Page header + both navs (gives the document a single H1 so outline has no “Untitled”) -->
+  <header class="site" role="banner">
+    <div class="wrap">
+      <h1>4 – HTML5 Semantics: Person</h1>
+
+      <!-- Course / Portal Navigation -->
+      <nav aria-label="Course navigation">
+        <h2 class="sr-only">Course Page Navigation</h2>
+        <ul>
+          <li><a href="index.html">Class Portal</a></li>
+        </ul>
+      </nav>
+
+      <!-- Article Navigation -->
+      <nav aria-label="Article navigation">
+        <h2 class="sr-only">Article Navigation</h2>
+        <ul>
+          <li><a href="#overview">Overview</a></li>
+          <li><a href="#personhood">Personhood</a></li>
+          <li><a href="#identity">Personal identity</a></li>
+          <li><a href="#development">Development of the concept</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="content" role="main">
+    <article class="wrap" aria-labelledby="page-title">
+      <!-- Keep page title for screen readers; visual H1 is in the header -->
+      <h1 id="page-title" class="sr-only">Person — Recoded Wikipedia Article</h1>
+
+      <!-- Lead / intro if you want -->
+      <!-- <p class="lede">Paste a one-sentence summary here.</p> -->
+
+      <section id="overview">
+        <h2>Overview</h2>
+        <p>
+          A person (pl.: people or persons, depending on context) is a being who has certain capacities or attributes such as reason,
+          morality, consciousness or self-consciousness, and being a part of a culturally established form of social relations such as
+          kinship, ownership of property, or legal responsibility.[1][2][3][4] The defining features of personhood and, consequently,
+          what makes a person count as a person, differ widely among cultures and contexts.[5][6]
+        </p>
+        <p>
+          In addition to the question of personhood, of what makes a being count as a person to begin with, there are further questions about
+          personal identity and self: both about what makes any particular person that particular person instead of another, and about what
+          makes a person at one time the same person as they were or will be at another time despite any intervening changes.
+        </p>
+        <p>
+          The plural form “people” is often used to refer to an entire nation or ethnic group (as in “a people”), and this was the original
+          meaning of the word; it subsequently acquired its use as a plural form of person. The plural form “persons” is often used in
+          philosophical and legal writing.
+        </p>
+      </section>
+
+      <section id="personhood">
+        <h2>Personhood</h2>
+        <p>
+          Personhood is the status of being a person. Defining personhood is a controversial topic in philosophy and law, and is closely tied
+          to legal and political concepts of citizenship, equality, and liberty. According to common worldwide general legal practice, only a
+          natural person or legal personality has rights, protections, privileges, responsibilities, and legal liability. Personhood continues
+          to be a topic of international debate, and has been questioned during the abolition of slavery and the fight for women's rights, in
+          debates about abortion, fetal rights, and in animal rights advocacy.[7][6]
+        </p>
+        <p>
+          Various debates have focused on questions about the personhood of different classes of entities. Historically, the personhood of women,
+          and slaves has been a catalyst of social upheaval. In most societies today, postnatal humans are defined as persons. Likewise, certain
+          legal entities such as corporations, sovereign states and other polities, or estates in probate are legally defined as persons.[8]
+          However, some people believe that other groups should be included; depending on the theory, the category of “person” may be taken to
+          include or not pre-natal humans or such non-human entities as animals, artificial intelligences, or extraterrestrial life.
+        </p>
+      </section>
+
+      <section id="identity">
+        <h2>Personal identity</h2>
+        <p>
+          Personal identity is the unique identity of persons through time—that is, the necessary and sufficient conditions under which a person
+          at one time and a person at another time can be said to be the same person, persisting through time. In the modern philosophy of mind,
+          this is sometimes called the diachronic problem of personal identity. The synchronic problem concerns which features characterize a
+          given person at one time.
+        </p>
+        <p>
+          Proposed solutions include continuity of the physical body, continuity of an immaterial mind or soul, continuity of consciousness or
+          memory,[9] the bundle theory of self,[10] continuity of personality after death,[11] and views that deny there are persisting persons.
+        </p>
+
+        <!-- Your images (host locally in /images/) -->
+        <figure>
+          <img src="images/500px-Paul_Klee_WI_(In_Memoriam)_1938.jpg" alt="Paul Klee painting 'In Memoriam' (1938)">
+          <figcaption>Paul Klee, <em>In Memoriam</em> (1938). Source: Wikimedia Commons.</figcaption>
+        </figure>
+      </section>
+
+      <section id="development">
+        <h2>Development of the concept</h2>
+        <p>
+          In ancient Rome, the word <em>persona</em> (Latin) or <em>prosopon</em> (Ancient Greek) originally referred to the masks worn by
+          actors on stage, representing the “personae” in the play.[12] The concept was further developed during Trinitarian and Christological
+          debates of the 4th and 5th centuries in contrast to “nature”.[13]
+        </p>
+        <p>
+          According to Jörg Noller, approaches range from Boethius’ ontological definition, Locke’s self-consciousness account, Kant’s moral
+          end-in-itself, animalism (Olson), constitution theory (Baker), and Schechtman’s “person life”, among others.[14] Other theories draw
+          on value theory, e.g., Kelly’s “richness” account of why humans/animals are valued as persons.[15]
+        </p>
+
+        <figure>
+          <img src="images/MontreGousset001.jpg" alt="A gold pocket watch on a wooden surface">
+          <figcaption>Antique pocket watch. Source: Wikimedia Commons.</figcaption>
+        </figure>
+      </section>
+    </article>
+  </main>
+
+  <footer class="site">
+    <div class="wrap">
+      <p>
+        Content adapted from the Wikipedia article
+        <a href="https://en.wikipedia.org/wiki/Person">Person</a> (CC BY-SA 4.0). Host images locally and credit per each
+        image’s Wikimedia Commons license.
+      </p>
+    </div>
+  </footer>
+</body>
+</html>
