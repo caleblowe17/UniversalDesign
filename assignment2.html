@@ -5,22 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Assignment 1 — Person (HTML5 Semantics)</title>
 
-  <!-- Google Fonts: serif for headings, sans-serif for body -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
-    /* Color-blind-safe, high-contrast palette */
+  
     :root{
-      --bg:#ffffff;              /* white background */
-      --fg:#0b1220;              /* near-black text */
-      --muted:#475569;           /* slate */
-      --link:#0b5fff;            /* accessible blue */
-      --visited:#5a36d6;         /* indigo */
-      --border:#e5e7eb;          /* light gray */
-      --accent:#0f766e;          /* teal */
-      --wrap:100ch;              /* ~100 characters per line */
+      --bg:#ffffff;             
+      --fg:#0b1220;             
+      --muted:#475569;           
+      --link:#0b5fff;            
+      --visited:#5a36d6;        
+      --border:#e5e7eb;          
+      --accent:#0f766e;          
+      --wrap:100ch;              
     }
 
     html{scroll-behavior:smooth;}
@@ -32,7 +31,7 @@
     a:visited{color:var(--visited)}
     a:focus-visible{outline:3px solid var(--accent); outline-offset:2px; border-radius:4px}
 
-    /* Auto-centering wrapper at ~100ch */
+   
     .wrap{max-width:var(--wrap); margin-inline:auto; padding:1rem;}
 
     header.site{
@@ -61,7 +60,7 @@
 
     footer.site{border-top:1px solid var(--border); font-size:.95rem}
 
-    /* Hide visually, keep for screen readers (required) */
+
     .sr-only{
       border:0; clip:rect(0,0,0,0); height:1px; margin:-1px;
       overflow:hidden; padding:0; position:absolute; white-space:nowrap; width:1px;
@@ -71,12 +70,12 @@
 <body>
   <a class="sr-only" href="#content">Skip to main content</a>
 
-  <!-- Page header + both navs (gives the document a single H1 so outline has no “Untitled”) -->
+
   <header class="site" role="banner">
     <div class="wrap">
       <h1>4 – HTML5 Semantics: Person</h1>
 
-      <!-- Course / Portal Navigation -->
+     
       <nav aria-label="Course navigation">
         <h2 class="sr-only">Course Page Navigation</h2>
         <ul>
@@ -99,11 +98,11 @@
 
   <main id="content" role="main">
     <article class="wrap" aria-labelledby="page-title">
-      <!-- Keep page title for screen readers; visual H1 is in the header -->
+    
       <h1 id="page-title" class="sr-only">Person — Recoded Wikipedia Article</h1>
 
-      <!-- Lead / intro if you want -->
-      <!-- <p class="lede">Paste a one-sentence summary here.</p> -->
+     
+     
 
       <section id="overview">
         <h2>Overview</h2>
@@ -156,7 +155,7 @@
           memory,[9] the bundle theory of self,[10] continuity of personality after death,[11] and views that deny there are persisting persons.
         </p>
 
-        <!-- Your images (host locally in /images/) -->
+        
         <figure>
           <img src="images/500px-Paul_Klee_WI_(In_Memoriam)_1938.jpg" alt="Paul Klee painting 'In Memoriam' (1938)">
           <figcaption>Paul Klee, <em>In Memoriam</em> (1938). Source: Wikimedia Commons.</figcaption>
