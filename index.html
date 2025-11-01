@@ -1,38 +1,184 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Class Portal</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Caleb Lowe — Class Portal</title>
+  <meta name="description" content="Accessible, responsive class portal with labs, projects, and about-me section for Universal Design." />
+  
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #111214;
+      --muted: #4b5563; /* gray-600 */
+      --brand: #0b5fff; /* accessible blue */
+      --brand-contrast: #0a3ecf;
+      --surface: #f6f7f9; /* light gray */
+      --ring: #111214;
+    }
+
+    /* Base reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html:focus-within { scroll-behavior: smooth; }
+    body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: var(--brand); text-decoration: underline; text-underline-offset: .15em; }
+    a:hover { color: var(--brand-contrast); }
+    a:focus { outline: 3px solid var(--ring); outline-offset: 2px; }
+
+    img { max-width: 100%; height: auto; }
+
+    /* Layout */
+    .container { max-width: 80ch; margin-inline: auto; padding: 1rem; }
+
+    header {
+      border-bottom: 1px solid #e5e7eb; /* gray-200 */
+      background: var(--bg);
+      position: sticky; top: 0; z-index: 10;
+    }
+
+    .topbar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .75rem 1rem; }
+    .site-title { font-size: clamp(1.25rem, 2.5vw, 1.75rem); margin: 0; }
+
+    nav[aria-label="Primary"] ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .5rem; }
+    nav[aria-label="Primary"] a {
+      display: inline-block;
+      padding: .5rem .75rem;
+      border-radius: .75rem;
+      background: var(--surface);
+      text-decoration: none;
+      border: 1px solid #e5e7eb;
+    }
+    nav[aria-label="Primary"] a[aria-current="page"] { background: #e6efff; border-color: #cfe0ff; }
+
+    /* Skip link */
+    .skip-link {
+      position: absolute;
+      left: 0; top: -40px;
+      background: #111214; color: white;
+      padding: .5rem .75rem;
+      border-radius: .5rem;
+    }
+    .skip-link:focus { top: .5rem; left: .5rem; outline: 3px solid white; }
+
+    /* Sections */
+    main { display: grid; gap: 2rem; padding: 1rem; }
+    section > h2 { font-size: 1.25rem; margin: 0 0 .5rem; }
+    .lead { color: var(--muted); margin-top: .25rem; }
+
+    /* About card */
+    .about {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 1rem;
+      background: var(--surface);
+      border: 1px solid #e5e7eb; border-radius: 1rem; padding: 1rem;
+    }
+    @media (min-width: 720px) {
+      .about { grid-template-columns: 160px 1fr; align-items: start; }
+    }
+    .avatar {
+      width: 150px; height: 150px; border-radius: 999px; object-fit: cover;
+      border: 3px solid #e5e7eb; background: #fff;
+    }
+
+    /* Projects grid */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+    .card {
+      background: var(--bg);
+      border: 1px solid #e5e7eb; border-radius: 1rem;
+      padding: 1rem;
+      display: grid; gap: .5rem;
+    }
+    .card h3 { margin: 0; font-size: 1.1rem; }
+    .card p { margin: 0; color: var(--muted); }
+    .card .actions { margin-top: .5rem; }
+    .btn { display: inline-block; padding: .5rem .75rem; border-radius: .75rem; border: 1px solid #e5e7eb; background: var(--surface); text-decoration: none; }
+    .btn:hover { background: #eef2ff; }
+
+    footer { border-top: 1px solid #e5e7eb; }
+    .foot { padding: 1rem; font-size: .95rem; color: var(--muted); text-align: center; }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
+
+    /* Dark scheme (optional, still AA contrast) */
+    @media (prefers-color-scheme: dark) {
+      :root { --bg:#0b0c0e; --text:#f3f4f6; --muted:#c7ced8; --surface:#171a1f; --brand:#7aa7ff; --brand-contrast:#9ec1ff; --ring:#f3f4f6; }
+      header, footer { border-color:#262a31; }
+      nav[aria-label="Primary"] a { border-color:#262a31; }
+      .card, .about { border-color:#262a31; }
+    }
+  </style>
 </head>
 <body>
-  <!-- Page Header -->
-  <header style="text-align: center;">
-    <h1>Website</h1>
-    <nav>
-      <h1>Links</h1>
-      <a href="assignment1.html">Sematic html5 part 1</a>
-      " | "
-      <a href="assignment2.html">Sematic html5 part 2</a>
-      " | "
-      <a href="assignment3.html">Tables and forms</a>
-    </nav>
-    <hr>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header>
+    <div class="container topbar" role="banner">
+      <h1 class="site-title">Class Portal</h1>
+
+          <li><a href="#assignments">Assignments</a></li>
+          <li><a href="#about">About</a></li>
+              </nav>
+    </div>
   </header>
 
-  <!-- About Me Section -->
-  <section>
-    <h2>About Me</h2>
-    <p>Hello! My name is Caleb. I am currently enrolled in Universal Design. 
-      I enjoy learning about web development and coding because it allows me 
-      to build creative and useful projects. Outside of coding, I make music 
-      and like solving tech problems.</p>
-  </section>
-  <hr>
+  <main id="main-content" class="container" role="main">
+    <section id="about" aria-labelledby="about-heading" class="about">
+      <div>
+        <img class="avatar" src="images/avatar.jpeg" width="150" height="150" alt="Portrait of Caleb Lowe" />
+      </div>
+      <div>
+        <h2 id="about-heading">About Me</h2>
+        <p>
+          Hi! I’m Caleb Lowe, a senior at CU Boulder studying Computer Science and currently taking Universal Design. I love building things for the web because it blends logic with creativity and has real impact when people can actually use what you make.
+        </p>
+        <p>
+          Outside of class, I produce music and love fixing tech problems, building PCs, and digging into how systems work.
+        </p>
+      
+      </div>
+    </section>
 
-  <!-- Footer -->
-  <footer style="text-align: center;">
-    <p>© 2025 Caleb Lowe | Class Portal</p>
-  </footer>
+    <section id="assignments" aria-labelledby="assignments-heading">
+      <h2 id="assignments-heading">Assignments</h2>
+      <div class="projects-grid">
+        <article class="card" aria-labelledby="a1-title">
+          <h3 id="a1-title">Assignment 1 — Semantic HTML (Part 1)</h3>
+          <p>Foundations: document structure, headings, landmarks, and semantic elements.</p>
+          <div class="actions">
+            <a class="btn" href="assignment1.html">Open Assignment 1</a>
+          </div>
+        </article>
+
+        <article class="card" aria-labelledby="a2-title">
+          <h3 id="a2-title">Assignment 2 — Semantic HTML (Part 2)</h3>
+          <p>Expanded semantics, accessible navigation, and content organization.</p>
+          <div class="actions">
+            <a class="btn" href="assignment2.html">Open Assignment 2</a>
+          </div>
+        </article>
+
+        <article class="card" aria-labelledby="a3-title">
+          <h3 id="a3-title">Assignment 3 — Tables & Forms</h3>
+          <p>Accessible tables with captions/scope and forms with labels, hints, and validation affordances.</p>
+          <div class="actions">
+            <a class="btn" href="assignment3.html">Open Assignment 3</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
 </body>
 </html>
