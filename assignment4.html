@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Assignment 4 — People (Grid + Flex, Responsive, A11y)</title>
+
+  <!-- Google Fonts: serif for headings, sans for paragraphs -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== Tokens (Adobe-color-friendly, high contrast) ===== */
+    :root{
+      --bg:#e8f1f3;       /* page background */
+      --paper:#ffffff;    /* header/nav/footer background */
+      --fg:#0b1220;       /* near-black text */
+      --muted:#334155;    /* slate */
+      --border:#0d2533;   /* dark borders */
+      --asideL:#f6e3cc;   /* left pastel */
+      --mainBG:#f6f1c9;   /* center pastel */
+      --asideR:#d4e7f7;   /* right pastel */
+      --link:#0b5fff;     /* accessible blue */
+      --visited:#5a36d6;  /* indigo */
+      --wrap:100ch;       /* ~100 characters per line */
+      --pad:1rem;
+    }
+
+    html { scroll-behavior: smooth; }
+    body{
+      margin:0; color:var(--fg); background:var(--bg);
+      font:16px/1.75 Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      /* === GRID: Desktop default === */
+      display:grid;
+      grid-template-columns: 1fr 2fr 1fr;
+      grid-template-areas:
+        "header header header"
+        "nav    nav    nav"
+        "aside-left main  aside-right"
+        "footer footer footer";
+      gap:0;
+      max-width: var(--wrap);
+      margin-inline:auto;
+      border-left:3px solid var(--border);
+      border-right:3px solid var(--border);
+      background:var(--paper);
+    }
+
+    /* headings use serif */
+    h1,h2,h3{ font-family:Merriweather, Georgia, serif; }
+    a{ color:var(--link); }
+    a:visited{ color:var(--visited); }
+    a:focus-visible{ outline:3px solid #0f766e; outline-offset:2px; border-radius:4px; }
+
+    /* Skip link */
+    .skip-link{
+      position:absolute; left:-999px; top:auto; width:1px; height:1px; overflow:hidden;
+    }
+    .skip-link:focus{
+      left:var(--pad); top:var(--pad); width:auto; height:auto;
+      padding:.4rem .6rem; background:#fff; border:2px solid var(--border); border-radius:.5rem; z-index:9999;
+    }
+
+    /* Visually hidden, screen-reader available (clip method) */
+    .sr-only{
+      border:0; clip:rect(0,0,0,0); height:1px; margin:-1px; overflow:hidden;
+      padding:0; position:absolute; white-space:nowrap; width:1px;
+    }
+
+    /* ===== Areas ===== */
+    .site-header{ grid-area: header; background:var(--paper); border-bottom:2px solid var(--border); }
+    .site-nav{ grid-area: nav; background:var(--paper); border-bottom:3px solid var(--border); }
+    .site-main{ grid-area: main; background:var(--mainBG); border-right:3px solid var(--border); padding:1rem 1.25rem; }
+    .aside-left{ grid-area: aside-left; background:var(--asideL); border-right:3px solid var(--border); padding:1rem; }
+    .aside-right{ grid-area: aside-right; background:var(--asideR); padding:1rem; }
+    .site-footer{ grid-area: footer; background:var(--paper); border-top:3px solid var(--border); text-align:center; padding:1rem; }
+
+    .site-header .brand{ padding:.75rem 1rem; }
+    .site-header h1{ margin:0; text-align:center; font-size:clamp(1.25rem,1rem + 1.2vw,1.75rem); }
+    .site-header .tagline{ margin:.25rem 0 0; color:var(--muted); text-align:center; }
+
+    /* ===== Flexbox Nav (horizontal → vertical on mobile) ===== */
+    .site-nav{ padding:.5rem 1rem; }
+    .nav-list{
+      display:flex; flex-wrap:wrap; justify-content:center;
+      gap:.75rem 2.5rem; list-style:none; padding:0; margin:.25rem 0 .5rem;
+    }
+    .nav-list a{
+      text-decoration:underline; text-underline-offset:.2em;
+      padding:.4rem .2rem;
+    }
+
+    /* Content spacing */
+    .site-main article section{ margin-bottom:1.25rem; }
+    figure{ margin:1rem 0; }
+    figure img{ max-width:100%; height:auto; display:block; border-radius:.25rem; }
+    figcaption{ font-size:.9rem; color:#223; }
+
+    /* ===== Tablet (600–1023px) ===== */
+    @media (max-width:1023.98px) and (min-width:600px){
+      body{
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+          "header header"
+          "nav    nav"
+          "aside-left main"
+          "aside-right aside-right"
+          "footer footer";
+      }
+      .site-main{ border-right:none; }
+      .aside-left{ border-right:3px solid var(--border); }
+    }
+
+    /* ===== Mobile (<600px) ===== */
+    @media (max-width:599.98px){
+      body{
+        grid-template-columns: 1fr;
+        grid-template-areas:
+          "header"
+          "nav"
+          "main"
+          "aside-left"
+          "aside-right"
+          "footer";
+      }
+      .nav-list{ flex-direction:column; gap:.5rem; align-items:stretch; }
+      .nav-list a{
+        display:block; width:100%;
+        padding:.9rem 1rem; border:1px solid var(--border); border-radius:.5rem; background:#fff;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- Header -->
+  <header class="site-header" role="banner">
+    <div class="brand">
+      <h1>6 — Accessible Layout: People</h1>
+      
+    </div>
+  </header>
+
+  <!-- Nav (Flexbox) -->
+  <nav class="site-nav" aria-label="Primary">
+    <h2 class="sr-only">Primary Navigation</h2>
+    <ul class="nav-list">
+      <li><a href="#overview">Overview</a></li>
+      <li><a href="#personhood">Personhood</a></li>
+      <li><a href="#identity">Personal identity</a></li>
+      <li><a href="#development">Development</a></li>
+      <li><a href="#resources">Resources</a></li>
+    </ul>
+  </nav>
+
+  <!-- Aside Left -->
+  <aside class="aside-left" aria-label="Gallery & facts">
+    <h2>Gallery</h2>
+    <figure>
+      <img src="images/500px-Paul_Klee_WI_(In_Memoriam)_1938.jpg" alt="Paul Klee painting 'In Memoriam' (1938)">
+      <figcaption>Paul Klee, <em>In Memoriam</em> (1938). Source: Wikimedia Commons.</figcaption>
+    </figure>
+
+    <h3>Quick facts</h3>
+    <ul>
+      <li><strong>Topic:</strong> Person (philosophy/law)</li>
+      <li><strong>Plural:</strong> people / persons</li>
+      <li><strong>Themes:</strong> personhood, identity</li>
+    </ul>
+
+    <h3>On this page</h3>
+    <ol>
+      <li><a href="#overview">Overview</a></li>
+      <li><a href="#personhood">Personhood</a></li>
+      <li><a href="#identity">Personal identity</a></li>
+      <li><a href="#development">Development</a></li>
+    </ol>
+  </aside>
+
+  <!-- Main -->
+  <main id="main" class="site-main" role="main">
+    <article aria-labelledby="page-title">
+      <h1 id="page-title" class="sr-only">Person — Recoded Article</h1>
+
+      <section id="overview">
+        <h2>Overview</h2>
+        <p>
+          A person (pl.: people or persons, depending on context) is a being who has certain capacities or attributes such as reason,
+          morality, consciousness or self-consciousness, and being a part of a culturally established form of social relations such as
+          kinship, ownership of property, or legal responsibility. The defining features of personhood differ widely among cultures and
+          contexts.
+        </p>
+        <p>
+          The plural form “people” can refer to a nation or ethnic group (as in “a people”). “Persons” is often used in philosophical and
+          legal writing.
+        </p>
+      </section>
+
+      <section id="personhood">
+        <h2>Personhood</h2>
+        <p>
+          Personhood is the status of being a person. Definitions vary across philosophy and law and intersect with citizenship, equality,
+          and liberty. Debates historically concerned the personhood of women and enslaved people; present debates include fetal personhood,
+          animal rights, and whether artificial intelligences or extraterrestrial life could be persons. Certain legal entities (e.g.,
+          corporations, states) are persons in law.
+        </p>
+      </section>
+
+      <section id="identity">
+        <h2>Personal identity</h2>
+        <p>
+          Personal identity asks what makes an individual the same person over time (diachronic identity) and which features characterize a
+          person at one time (synchronic identity). Proposed accounts include bodily continuity, psychological continuity (memory,
+          consciousness), the bundle theory, and views denying persisting selves.
+        </p>
+        <figure>
+          <img src="images/MontreGousset001.jpg" alt="Antique gold pocket watch on a wooden surface">
+          <figcaption>Antique pocket watch. Source: Wikimedia Commons.</figcaption>
+        </figure>
+      </section>
+
+      <section id="development">
+        <h2>Development of the concept</h2>
+        <p>
+          In ancient Rome, <em>persona</em> (and Greek <em>prosopon</em>) referred to theatrical masks. The concept evolved in late
+          antiquity’s Trinitarian and Christological debates (person vs. nature). Later accounts range from Boethius’ rational substance,
+          Locke’s self-consciousness, and Kant’s moral “end in itself,” to contemporary animalism, constitution theory, and person-life views.
+        </p>
+      </section>
+
+      <section id="resources">
+        <h2>Resources</h2>
+        <ul>
+          <li><a href="https://en.wikipedia.org/wiki/Person">Wikipedia: Person</a></li>
+        </ul>
+      </section>
+    </article>
+  </main>
+
+  <!-- Aside Right -->
+  <aside class="aside-right" aria-label="Notes">
+    <h2>Notes</h2>
+    <p>Host images locally and credit per the Wikimedia Commons license pages.</p>
+
+    <h3>Accessibility checklist</h3>
+    <ul>
+      <li>Logical heading hierarchy (no “Untitled” in Outliner)</li>
+      <li>Skip link + visible focus</li>
+      <li>High-contrast colors (check with WAVE)</li>
+      <li>ARIA labels for landmarks & nav</li>
+    </ul>
+  </aside>
+
+  <!-- Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <p>
+      Content adapted from the Wikipedia article
+      <a href="https://en.wikipedia.org/wiki/Person">Person</a> (CC BY-SA 4.0). © 2025
+    </p>
+  </footer>
+</body>
+</html>
